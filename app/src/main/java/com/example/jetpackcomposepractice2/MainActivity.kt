@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Email
@@ -25,6 +26,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -36,9 +38,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.jetpackcomposepractice2.ui.theme.JetpackComposePractice2Theme
 
@@ -85,7 +90,12 @@ fun MyApp(modifier: Modifier = Modifier) {
     }
     Scaffold(
         bottomBar = {
-            NavigationBar {
+            NavigationBar(
+                modifier
+                    .padding(10.dp)
+                    .clip(RoundedCornerShape(20.dp)),
+                containerColor = Color(0xFFE0A9A5)
+            ) {
                 items.forEachIndexed { index, item ->
                     NavigationBarItem(
                         selected = bottomNavState == index,
@@ -121,7 +131,12 @@ fun MyApp(modifier: Modifier = Modifier) {
                             Text(
                                 text = item.title
                             )
-                        }
+                        },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color(0xFF552A27),
+                            selectedTextColor = Color(0xFF63332F),
+                            indicatorColor = Color(0xFFBB7E7A)
+                        )
                     )
                 }
 
