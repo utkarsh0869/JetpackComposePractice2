@@ -9,6 +9,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,8 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
@@ -65,8 +68,51 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetpackComposePractice2Theme {
-                MyApp()
+//                MyApp()
+                NewScaffold()
             }
+        }
+    }
+}
+
+@Composable
+fun NewScaffold(modifier: Modifier = Modifier) {
+    Scaffold(
+        bottomBar = {
+            BottomAppBar {
+                Row(
+                    modifier
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Icon(imageVector = Icons.Default.Edit, contentDescription = "edit")
+                    FloatingActionButton(
+                        onClick = {},
+                        containerColor = Color(0xFFFFEB3B)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = "FAB Button"
+                        )
+                    }
+                    Icon(imageVector = Icons.Default.Delete, contentDescription = "delete")
+                }
+            }
+        }
+    ) { innerPadding ->
+        Column(
+            Modifier
+                .padding(innerPadding)
+                .fillMaxSize() ,
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "FAB Inside bottom bar practice",
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 22.sp
+            )
         }
     }
 }
@@ -240,6 +286,7 @@ data class NavigationItemState(
 @Composable
 fun GreetingPreview() {
     JetpackComposePractice2Theme {
-        MyApp()
+//        MyApp()
+        NewScaffold()
     }
 }
