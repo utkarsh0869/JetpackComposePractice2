@@ -4,19 +4,30 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Face
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.BottomAppBar
@@ -30,6 +41,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -92,7 +104,7 @@ fun MyApp(modifier: Modifier = Modifier) {
         bottomBar = {
             NavigationBar(
                 modifier
-                    .padding(10.dp)
+//                    .padding(10.dp)
                     .clip(RoundedCornerShape(20.dp)),
                 containerColor = Color(0xFFE0A9A5)
             ) {
@@ -139,14 +151,56 @@ fun MyApp(modifier: Modifier = Modifier) {
                         )
                     )
                 }
-
             }
+        },
+        topBar = {
+            TopAppBar(
+                title = {
+                    Box(
+                        modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = "Top App Bar")
+                    }
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClick = {  }
+                    ) {
+                        Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu Icon")
+                    }
+                },
+                actions = {
+                    BadgedBox(
+                        badge = {
+                            Badge {}
+                        },
+                        modifier
+                            .padding(8.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.FavoriteBorder,
+                            contentDescription = "Fav Icon"
+                        )
+                    }
+                    Icon(
+                        imageVector = Icons.Outlined.ShoppingCart,
+                        contentDescription = "Fav Icon",
+                        modifier.padding(8.dp)
+                    )
+                },
+                colors = TopAppBarDefaults.smallTopAppBarColors(
+                    containerColor = Color(0xFFE0A9A5)
+                )
+            )
         }
     ) { innerPadding ->
         Column(
-            modifier
+            Modifier
                 .padding(innerPadding)
-                .fillMaxSize(),
+                .fillMaxSize()
+                .border(border = BorderStroke(2.dp, color = Color.Red)),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
