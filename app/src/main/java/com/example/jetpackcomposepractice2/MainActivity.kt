@@ -164,6 +164,9 @@ fun MyApp(modifier: Modifier = Modifier) {
                         Text(text = "Top App Bar")
                     }
                 },
+                modifier
+//                    .padding(10.dp)
+                    .clip(RoundedCornerShape(20.dp)),
                 navigationIcon = {
                     IconButton(
                         onClick = {  }
