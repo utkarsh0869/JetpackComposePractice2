@@ -101,6 +101,18 @@ fun MyApp(modifier: Modifier = Modifier) {
         mutableIntStateOf(0)
     }
     Scaffold(
+        floatingActionButton = {
+           FloatingActionButton(
+               onClick = {},
+               shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp, bottomStart = 30.dp),
+               containerColor = Color(0xFFFFEB3B)
+           ) {
+               Icon(
+                   imageVector = Icons.Default.Add,
+                   contentDescription = "FAB Button"
+               )
+           }
+        },
         bottomBar = {
             NavigationBar(
                 modifier
